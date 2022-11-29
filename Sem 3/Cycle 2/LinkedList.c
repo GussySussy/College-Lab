@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct
+struct node
 {
     int data;
     struct node *link;
-} node;
+};
 
-node *head = NULL;
+struct node *head = NULL;
 
 void insertAtBeginning(int data)
 {
-    node *newNode = (node *)malloc(sizeof(node));
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));
     newNode->data = data;
     newNode->link = head;
     head = newNode;
@@ -21,15 +21,13 @@ void insertAtBeginning(int data)
 
 void insertAtEnd(int data)
 {
-    node *newNode = (node *)malloc(sizeof(node));
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));
     newNode->data = data;
+    newNode->link = NULL;
 
-    node *end = head;
-    if (head == NULL)
-    {
-        head = newNode;
-    }
-    else
+    struct node *end = head;
+
+    if (end != NULL)
     {
         while (end->link != NULL)
         {
@@ -37,15 +35,19 @@ void insertAtEnd(int data)
         }
         end->link = newNode;
     }
+    else
+    {
+        head = newNode;
+    }
     printf("\n--- Insertion is successful ---");
 }
 
-void insertAfterValue(int pos, int data)
+void insertAfterPosition(int pos, int data)
 {
-    node *newNode = (node *)malloc(sizeof(node));
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));
     newNode->data = data;
 
-    node *curr = head;
+    struct node *curr = head;
     while (curr != NULL && --pos)
     {
         curr = curr->link;
@@ -63,7 +65,7 @@ void insertAfterValue(int pos, int data)
 
 void deleteByValue(int value)
 {
-    node *curr = head, *prev = NULL;
+    struct node *curr = head, *prev = NULL;
     while (curr != NULL && curr->data != value)
     {
         prev = curr;
@@ -84,7 +86,7 @@ void deleteByValue(int value)
 
 void display()
 {
-    node *curr = head;
+    struct node *curr = head;
     if (curr == NULL)
     {
         printf("\nList empty");
@@ -105,11 +107,12 @@ void main()
     do
     {
         printf("\n\nChoose operation");
-        printf("\n1.Insert at beginning");
-        printf("\n2.Insert at end");
-        printf("\n3.Insert at position");
-        printf("\n4.Delete node containing a particular element ");
-        printf("\n5.Display linked list");
+        printf("\n1. Insert at beginning");
+        printf("\n2. Insert at end");
+        printf("\n3. Insert at position");
+        printf("\n4. Delete element with a given value ");
+        printf("\n5. Display linked list");
+        printf("\n6. Quit");
 
         printf("\n\n");
         scanf("%d", &ch);
@@ -126,7 +129,7 @@ void main()
             insertAtEnd(element);
             break;
         case 3:
-            printf("\nEnter the position after which node will be inserted ");
+            printf("\nEnter the position after which struct node will be inserted ");
             scanf("%d", &pos);
             printf("\nEnter element to insert ");
             scanf("%d", &element);
@@ -135,11 +138,13 @@ void main()
         case 4:
             printf("\nEnter element to delete ");
             scanf("%d", &element);
-            deleteElement(element);
+            deleteByValue(element);
             break;
         case 5:
             display();
             break;
+        case 6:
+            exit(0);
         }
-    } while (ch < 6);
+    } while (ch != 6);
 }
