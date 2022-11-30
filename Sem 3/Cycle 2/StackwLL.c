@@ -75,13 +75,13 @@ void main()
         switch (ch)
         {
         case 1:
-            printf("\nEnter element to psuh into the stack ");
+            printf("\nEnter element to push into the stack : ");
             scanf("%d", &element);
             Push(element);
             break;
         case 2:
             popped = Pop();
-            printf("\nPopped Element is %d ", popped);
+            printf("\nPopped Element is : %d ", popped);
             break;
         case 3:
             display();
