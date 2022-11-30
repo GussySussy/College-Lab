@@ -71,7 +71,7 @@ void deleteByValue(int value)
         prev = curr;
         curr = curr->link;
     }
-    if (head->data == value)
+    if (prev == NULL)
     {
         head = head->link;
     }
@@ -79,7 +79,10 @@ void deleteByValue(int value)
     {
         printf("\nElement not found in the List");
     }
-    prev->link = curr->link;
+    else
+    {
+        prev->link = curr->link;
+    }
     free(curr);
     printf("\nDeletion Successfull");
 }
