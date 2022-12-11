@@ -54,11 +54,11 @@ void main()
         arr[i] = element;
     }
 
-    printf("Array before sorting : \n");
+    printf("\nArray before sorting : \n");
     printArray(arr,size);
 
     quickSort(arr, 0, size - 1);
 
-    printf("\nArray after sorting : \n");
+    printf("\n\nArray after sorting : \n");
     printArray(arr,size);
 }
