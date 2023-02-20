@@ -12,6 +12,12 @@ public class randomstudy {
         return true;
     }
 
+    void stringstudy(){
+        String w1 = "Welcome";
+        String w2 = "Welcome";
+        
+    }
+
     public static void main(String[] args) {
         String s,result ="";
         Scanner sc = new Scanner(System.in);
